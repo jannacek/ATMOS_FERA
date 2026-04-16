@@ -168,6 +168,24 @@ footer a:hover{color:var(--rust)}
   .hero-meta-row{gap:16px}.side-text{display:none}
   .version-row{grid-template-columns:1fr}.ver-label-col{display:none}
 }
+
+/* COPYRIGHT FOOTER */
+.copyright-section{margin-top:56px;border-top:1px solid var(--border);padding-top:0}
+.copyright-header{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:18px 0;transition:opacity 0.3s}
+.copyright-header:hover{opacity:0.85}
+.copyright-label{font-size:10px;letter-spacing:0.22em;color:var(--mid);text-transform:uppercase}
+.copyright-toggle{font-size:9px;letter-spacing:0.2em;color:var(--border);text-transform:uppercase;transition:color 0.3s;user-select:none}
+.copyright-header:hover .copyright-toggle{color:var(--rust)}
+.copyright-body{max-height:0;overflow:hidden;transition:max-height 0.55s cubic-bezier(0.4,0,0.2,1),opacity 0.4s ease;opacity:0}
+.copyright-body.open{max-height:600px;opacity:1}
+.copyright-inner{padding-bottom:28px;display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+.copyright-inner p{font-family:'Cormorant Garamond',serif;font-size:15px;color:rgba(232,221,208,0.45);line-height:1.65;margin-bottom:0.75em}
+.copyright-inner strong{color:rgba(232,221,208,0.65);font-weight:500}
+.copyright-inner a{color:var(--dust);text-decoration:none;transition:color 0.3s}
+.copyright-inner a:hover{color:var(--rust)}
+.copyright-divider{grid-column:span 2;height:1px;background:var(--border);margin-bottom:22px}
+@media(max-width:620px){.copyright-inner{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -175,7 +193,7 @@ footer a:hover{color:var(--rust)}
 <canvas id="dust-field"></canvas>
 <canvas id="scanlines"></canvas>
 
-<div class="side-text">Atmospheric Enactment · Epistemic Practice · 2024–</div>
+<div class="side-text">Atmospheric Enactment · Epistemic Practice · 2025–</div>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
@@ -248,7 +266,7 @@ footer a:hover{color:var(--rust)}
 
     <div class="reveal">
       <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/ZmOE54Um_V4"
+        <iframe src="https://www.youtube.com/embed/w3apxaD4uxg"
           title="ATMOS_FERA — Performance documentation, ISO Amsterdam, ADE 2025"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen></iframe>
@@ -432,9 +450,8 @@ footer a:hover{color:var(--rust)}
       <div class="ver-content">
         <span class="ver-status progress">In development · 2026</span>
         <div class="ver-title">UNTERRA: <em>Exo-Horizons</em></div>
-        <div class="ver-body">Fulldome configuration. Updated renders adapting the pipeline for a 360° immersive dome. Multi-planet atmospheric arc — Venus, Mars, Jupiter, Saturn, Neptune — each defining a distinct perceptual regime. Submitted to CULTVR Catalyst residency open call (Wales).</div>
+        <div class="ver-body">Fulldome configuration. Updated renders adapting the pipeline for a 360° immersive dome. Multi-planet atmospheric arc — Venus, Mars, Jupiter, Saturn, Neptune — each defining a distinct perceptual regime.</div>
         <div class="ver-links">
-          <a href="https://www.cultvr.cymru/get-involved/residencies/catalyst-360/" target="_blank" class="ver-link">CULTVR Catalyst ↗</a>
         </div>
       </div>
     </div>
@@ -457,8 +474,31 @@ footer a:hover{color:var(--rust)}
 
   <div class="divider reveal"><div class="divider-line"></div><div class="divider-sym">·</div><div class="divider-line"></div></div>
 
+
+  <!-- COPYRIGHT -->
+  <div class="copyright-section reveal" id="copyright">
+    <div class="copyright-header" onclick="toggleCopyright()" aria-expanded="false" aria-controls="copyright-body">
+      <span class="copyright-label">© 2025 Agustín Martínez Caram · All rights reserved</span>
+      <span class="copyright-toggle" id="copyright-toggle">+ Usage &amp; Rights</span>
+    </div>
+    <div class="copyright-body" id="copyright-body" role="region">
+      <div class="copyright-inner">
+        <div class="copyright-divider"></div>
+        <div>
+          <p>All content on this page — including performance documentation, audiovisual materials, technical descriptions, artistic statements, and structural design — is the intellectual property of <strong>Agustín Martínez Caram</strong> unless otherwise credited.</p>
+          <p>Reproduction, distribution, or adaptation of any material requires prior written consent. Academic citation and critical writing are permitted with full attribution.</p>
+        </div>
+        <div>
+          <p><strong>Scientific data</strong> sourced from NASA's Planetary Spectrum Generator (PSG). Credit: Villanueva et al. (2018). Used under NASA open data policy.</p>
+          <p><strong>Speakers</strong> by KIKUNO. Used with permission. All rights reserved by the respective artist.</p>
+          <p>For licensing, collaboration, or press enquiries: <a href="https://martinezcaram.com">martinezcaram.com ↗</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer class="reveal">
-    <span>Agustín Martínez Caram · ATMOS_FERA · 2024–</span>
+    <span>Agustín Martínez Caram · ATMOS_FERA · 2025–</span>
     <a href="https://martinezcaram.com">martinezcaram.com ↗</a>
   </footer>
 
@@ -646,6 +686,16 @@ window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>50)
 /* ── REVEAL ── */
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:0.07,rootMargin:'0px 0px -24px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ── COPYRIGHT TOGGLE ── */
+function toggleCopyright(){
+  const body=document.getElementById('copyright-body');
+  const toggle=document.getElementById('copyright-toggle');
+  const header=document.querySelector('.copyright-header');
+  const isOpen=body.classList.toggle('open');
+  toggle.textContent=isOpen?'− Close':'+ Usage & Rights';
+  header.setAttribute('aria-expanded',isOpen);
+}
 </script>
 </body>
 </html>
