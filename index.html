@@ -208,6 +208,43 @@ footer a:hover{color:var(--rust)}
 .img-card.expanded .img-card-thumb{max-height:2000px;object-fit:unset}
 .img-card-tags{display:flex;flex-wrap:wrap;gap:6px;padding:0 26px 0;max-height:0;overflow:hidden;opacity:0;transition:max-height 0.5s ease,opacity 0.4s ease,padding 0.4s ease}
 .img-card.expanded .img-card-tags{max-height:80px;opacity:1;padding:0 26px 20px}
+
+/* PAPER EMBARGO OVERLAY */
+.paper-wrap{position:relative}
+.paper-embargo{
+  position:absolute;inset:0;
+  backdrop-filter:blur(14px) brightness(0.45);
+  -webkit-backdrop-filter:blur(14px) brightness(0.45);
+  background:rgba(8,7,5,0.55);
+  z-index:10;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:18px;
+  pointer-events:none;
+}
+.paper-embargo-icon{
+  font-size:28px;opacity:0.5;color:var(--ochre);
+  letter-spacing:0.1em;
+}
+.paper-embargo-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(18px,2.4vw,26px);font-weight:300;
+  color:var(--paper);letter-spacing:0.04em;text-align:center;
+  line-height:1.3;
+}
+.paper-embargo-note{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:0.22em;color:var(--dust);
+  text-transform:uppercase;text-align:center;line-height:1.8;
+  max-width:380px;
+}
+.paper-embargo-date{
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;letter-spacing:0.18em;
+  color:var(--rust);text-transform:uppercase;
+  border:1px solid rgba(184,77,40,0.35);
+  padding:6px 20px;
+}
 </style>
 </head>
 <body>
@@ -288,7 +325,7 @@ footer a:hover{color:var(--rust)}
 
     <div class="reveal">
       <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/ZmOE54Um_V4?si=3qqRyfceB0xCWZy3"
+        <iframe src="https://www.youtube.com/embed/ZmOE54Um_V4"
           title="ATMOS_FERA — Performance documentation, ISO Amsterdam, ADE 2025"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -477,11 +514,17 @@ footer a:hover{color:var(--rust)}
 
     <div class="body-text reveal" style="margin-bottom:28px;">
       <p>
-        Accepted to <strong>ISEA 2026</strong> — International Symposium on Electronic Art, Dubai. The paper theorises ATMOS_FERA through the lens of epistemology and embodied perception: how physical engagement with composed atmospheric conditions can constitute a form of knowing. <em>Conference: April 2026.</em>
+        Accepted to <strong>ISEA 2026</strong> — International Symposium on Electronic Art, Dubai. The paper theorises ATMOS_FERA through the lens of epistemology and embodied perception: how physical engagement with composed atmospheric conditions can constitute a form of knowing. <em>Conference: November 2026.</em>
       </p>
     </div>
 
     <div class="paper-wrap reveal">
+      <div class="paper-embargo">
+        <div class="paper-embargo-icon">⬡</div>
+        <div class="paper-embargo-title">Atmospheric Enactment as Epistemic Practice</div>
+        <div class="paper-embargo-note">This paper has been accepted to ISEA 2026.<br>Full text will be made available on this site<br>following the conference presentation.</div>
+        <div class="paper-embargo-date">Available · November 2026</div>
+      </div>
       <iframe src="https://drive.google.com/file/d/1HYPzM8On8cnXdF5MvcA8CADrXmhUZgQc/preview"
         title="ATMOS_FERA: Atmospheric Enactment as Epistemic Practice — ISEA 2026"></iframe>
       <div class="paper-bar">
@@ -496,7 +539,7 @@ footer a:hover{color:var(--rust)}
           <span class="link-card-title">ISEA 2026 · International Symposium on Electronic Art</span>
           <span class="link-card-arrow">↗</span>
         </div>
-        <div class="link-card-desc">Dubai, April 2026. Paper accepted and forthcoming.</div>
+        <div class="link-card-desc">Dubai, November 2026. Paper accepted and forthcoming.</div>
       </a>
     </div>
   </section>
